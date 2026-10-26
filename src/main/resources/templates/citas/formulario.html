@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cita · Clínica Salud</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header>
+    <div class="marca">Clínica Salud</div>
+    <nav>
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/pacientes}">Pacientes</a>
+        <a th:href="@{/citas}">Citas</a>
+    </nav>
+</header>
+
+<main class="contenedor">
+    <h1 th:text="${cita.id == null ? 'Nueva cita' : 'Editar cita'}">Nueva cita</h1>
+
+    <form class="formulario" th:action="@{/citas/guardar}" method="post">
+        <input type="hidden" name="id" th:value="${cita.id}">
+
+        <div class="campo">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" th:value="${cita.fecha}">
+            <p class="error" th:if="${errores != null and errores['fecha'] != null}"
+               th:text="${errores['fecha']}">Error en la fecha</p>
+        </div>
+
+        <div class="campo">
+            <label for="motivo">Motivo</label>
+            <textarea id="motivo" name="motivo" placeholder="Motivo de la consulta"
+                      th:text="${cita.motivo}"></textarea>
+            <p class="error" th:if="${errores != null and errores['motivo'] != null}"
+               th:text="${errores['motivo']}">Error en el motivo</p>
+        </div>
+
+        <div class="campo">
+            <label for="pacienteId">Paciente</label>
+            <select id="pacienteId" name="pacienteId">
+                <option value="">-- Selecciona un paciente --</option>
+                <option th:each="p : ${pacientes}"
+                        th:value="${p.id}"
+                        th:text="${p.nombre}"
+                        th:selected="${cita.paciente != null and cita.paciente.id == p.id}">
+                </option>
+            </select>
+            <p class="error" th:if="${errores != null and errores['paciente'] != null}"
+               th:text="${errores['paciente']}">Error en el paciente</p>
+        </div>
+
+        <div class="botones-formulario">
+            <button type="submit">Guardar</button>
+            <a class="boton secundario" th:href="@{/citas}">Cancelar</a>
+        </div>
+    </form>
+</main>
+
+<footer>MF0493_3 · Implantación de aplicaciones web · Hazerta</footer>
+</body>
+</html>

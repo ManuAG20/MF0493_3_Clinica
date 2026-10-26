@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pacientes · Clínica Salud</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header>
+    <div class="marca">Clínica Salud</div>
+    <nav>
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/pacientes}">Pacientes</a>
+        <a th:href="@{/citas}">Citas</a>
+    </nav>
+</header>
+
+<main class="contenedor">
+    <div class="cabecera-listado">
+        <h1>Pacientes</h1>
+        <a class="boton" th:href="@{/pacientes/nuevo}">Nuevo paciente</a>
+    </div>
+
+    <div class="aviso" th:if="${mensaje}" th:text="${mensaje}"></div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(pacientes)}">
+            <td colspan="5" class="vacio">Todavía no hay pacientes registrados.</td>
+        </tr>
+        <tr th:each="p : ${pacientes}">
+            <td th:text="${p.id}">1</td>
+            <td th:text="${p.nombre}">Ana García</td>
+            <td th:text="${p.email}">ana@example.com</td>
+            <td th:text="${p.telefono}">600111222</td>
+            <td>
+                <div class="acciones-fila">
+                    <a class="enlace" th:href="@{/pacientes/editar/{id}(id=${p.id})}">Editar</a>
+                    <form th:action="@{/pacientes/borrar/{id}(id=${p.id})}" method="post"
+                          onsubmit="return confirm('¿Seguro que quieres borrar este paciente y todas sus citas?');">
+                        <button type="submit" class="peligro">Borrar</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>MF0493_3 · Implantación de aplicaciones web · Hazerta</footer>
+</body>
+</html>

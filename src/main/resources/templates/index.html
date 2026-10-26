@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clínica Salud</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header>
+    <div class="marca">Clínica Salud</div>
+    <nav>
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/pacientes}">Pacientes</a>
+        <a th:href="@{/citas}">Citas</a>
+    </nav>
+</header>
+
+<main class="contenedor">
+    <section class="heroe">
+        <h1>Gestión de pacientes y citas</h1>
+        <p>
+            Aplicación web de ejemplo construida con Java, Spring MVC, Hibernate y Thymeleaf.
+            Permite registrar pacientes y asignarles citas.
+        </p>
+        <div class="acciones">
+            <a class="boton" th:href="@{/pacientes}">Ver pacientes</a>
+            <a class="boton secundario" th:href="@{/citas}">Ver citas</a>
+        </div>
+    </section>
+
+    <section class="tarjetas">
+        <article class="tarjeta">
+            <span class="numero" th:text="${numPacientes}">0</span>
+            <span>Pacientes registrados</span>
+        </article>
+        <article class="tarjeta">
+            <span class="numero" th:text="${numCitas}">0</span>
+            <span>Citas registradas</span>
+        </article>
+    </section>
+</main>
+
+<footer>MF0493_3 · Implantación de aplicaciones web · Hazerta</footer>
+</body>
+</html>

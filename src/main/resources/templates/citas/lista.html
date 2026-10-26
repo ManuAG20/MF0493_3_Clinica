@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Citas · Clínica Salud</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header>
+    <div class="marca">Clínica Salud</div>
+    <nav>
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/pacientes}">Pacientes</a>
+        <a th:href="@{/citas}">Citas</a>
+    </nav>
+</header>
+
+<main class="contenedor">
+    <div class="cabecera-listado">
+        <h1>Citas</h1>
+        <a class="boton" th:href="@{/citas/nuevo}">Nueva cita</a>
+    </div>
+
+    <div class="aviso" th:if="${mensaje}" th:text="${mensaje}"></div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Motivo</th>
+            <th>Paciente</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(citas)}">
+            <td colspan="5" class="vacio">Todavía no hay citas registradas.</td>
+        </tr>
+        <tr th:each="c : ${citas}">
+            <td th:text="${c.id}">1</td>
+            <td th:text="${c.fechaLegible}">01/01/2026</td>
+            <td th:text="${c.motivo}">Revisión anual</td>
+            <td th:text="${c.paciente.nombre}">Ana García</td>
+            <td>
+                <div class="acciones-fila">
+                    <a class="enlace" th:href="@{/citas/editar/{id}(id=${c.id})}">Editar</a>
+                    <form th:action="@{/citas/borrar/{id}(id=${c.id})}" method="post"
+                          onsubmit="return confirm('¿Seguro que quieres borrar esta cita?');">
+                        <button type="submit" class="peligro">Borrar</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>MF0493_3 · Implantación de aplicaciones web · Hazerta</footer>
+</body>
+</html>

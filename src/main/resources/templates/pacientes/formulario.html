@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paciente · Clínica Salud</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header>
+    <div class="marca">Clínica Salud</div>
+    <nav>
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/pacientes}">Pacientes</a>
+        <a th:href="@{/citas}">Citas</a>
+    </nav>
+</header>
+
+<main class="contenedor">
+    <h1 th:text="${paciente.id == null ? 'Nuevo paciente' : 'Editar paciente'}">Nuevo paciente</h1>
+
+    <form class="formulario" th:action="@{/pacientes/guardar}" th:object="${paciente}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" th:field="*{nombre}" placeholder="Nombre y apellidos">
+            <p class="error" th:if="${errores != null and errores['nombre'] != null}"
+               th:text="${errores['nombre']}">Error en el nombre</p>
+        </div>
+
+        <div class="campo">
+            <label for="email">Email</label>
+            <input type="text" id="email" th:field="*{email}" placeholder="ejemplo@dominio.com">
+            <p class="error" th:if="${errores != null and errores['email'] != null}"
+               th:text="${errores['email']}">Error en el email</p>
+        </div>
+
+        <div class="campo">
+            <label for="telefono">Teléfono</label>
+            <input type="text" id="telefono" th:field="*{telefono}" placeholder="600111222">
+            <p class="error" th:if="${errores != null and errores['telefono'] != null}"
+               th:text="${errores['telefono']}">Error en el teléfono</p>
+        </div>
+
+        <div class="botones-formulario">
+            <button type="submit">Guardar</button>
+            <a class="boton secundario" th:href="@{/pacientes}">Cancelar</a>
+        </div>
+    </form>
+</main>
+
+<footer>MF0493_3 · Implantación de aplicaciones web · Hazerta</footer>
+</body>
+</html>

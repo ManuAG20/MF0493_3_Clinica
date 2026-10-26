@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>No encontrado · Clínica Salud</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header>
+    <div class="marca">Clínica Salud</div>
+    <nav>
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/pacientes}">Pacientes</a>
+        <a th:href="@{/citas}">Citas</a>
+    </nav>
+</header>
+
+<main class="contenedor">
+    <section class="pagina-error">
+        <div class="codigo">404</div>
+        <h1>Recurso no encontrado</h1>
+        <p th:text="${mensaje != null ? mensaje : 'El paciente o la cita que buscas no existe.'}">
+            El paciente o la cita que buscas no existe.
+        </p>
+        <a class="boton" th:href="@{/}">Volver al inicio</a>
+    </section>
+</main>
+
+<footer>MF0493_3 · Implantación de aplicaciones web · Hazerta</footer>
+</body>
+</html>
