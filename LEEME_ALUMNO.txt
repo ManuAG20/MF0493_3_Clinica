@@ -1,0 +1,45 @@
+PROYECTO FINAL - MF0493_3 - IMPLANTACIÓN DE APLICACIONES WEB
+============================================================
+
+DATOS PERSONALES
+Nombre y apellidos: [ESCRIBE AQUÍ TU NOMBRE]
+Curso: [ESCRIBE AQUÍ TU CURSO]
+Fecha de entrega: [ESCRIBE AQUÍ LA FECHA]
+
+DESCRIPCIÓN DE LA APLICACIÓN
+Aplicación web de gestión de una clínica. Permite:
+  - Listar, crear, editar y borrar pacientes.
+  - Listar, crear, editar y borrar citas.
+  - Asociar cada cita a un paciente (relación 1:N).
+Los datos se guardan en una base de datos H2 en memoria.
+
+CÓMO SE ARRANCA
+  1. Doble clic en arrancar.bat.
+  2. Abrir http://localhost:8080 en el navegador.
+  3. Para parar: Ctrl + C en la ventana negra.
+
+QUÉ HACE CADA CLASE
+  - Paciente.java: entidad Hibernate de la tabla paciente. Tiene @Entity, @Id,
+    @GeneratedValue y @OneToMany hacia Cita.
+  - Cita.java: entidad Hibernate de la tabla cita. Tiene @ManyToOne hacia Paciente.
+  - PacienteRepository.java y CitaRepository.java: extienden JpaRepository y
+    ofrecen el CRUD completo sin escribir SQL.
+  - PacienteService.java y CitaService.java: lógica de negocio y validación.
+  - PacienteController.java, CitaController.java y HomeController.java: reciben
+    las peticiones HTTP y eligen la vista.
+  - Las plantillas de src/main/resources/templates son las vistas Thymeleaf.
+  - schema.sql crea las tablas y data.sql carga los datos de ejemplo.
+
+QUÉ ES HIBERNATE
+Hibernate es un ORM (mapeo objeto-relacional): traduce las clases Java anotadas
+con @Entity a tablas de la base de datos y convierte los objetos en filas. Así
+no hay que escribir SQL a mano para guardar, listar o borrar.
+
+PRUEBAS
+  - probar.bat ejecuta las pruebas automáticas con JUnit. Deben pasar todas.
+  - Hay pruebas de integración (MockMvc) y pruebas unitarias (Mockito).
+
+EMPAQUETAR Y EJECUTAR EL JAR
+  - empaquetar.bat crea target\app.jar con la aplicación y sus librerías.
+  - En otro equipo con Java 17: java -jar app.jar
+  - También se puede ejecutar aquí con ejecutar_jar.bat.

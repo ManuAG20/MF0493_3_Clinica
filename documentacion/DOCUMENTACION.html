@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Documentación · Clínica Salud</title>
+<style>
+    @page { size: A4; margin: 18mm 16mm; }
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #1f2933;
+        line-height: 1.55;
+        font-size: 11pt;
+        margin: 0;
+        background: #ffffff;
+    }
+
+    h1 { color: #124a6b; font-size: 22pt; margin: 0 0 8px; }
+    h2 {
+        color: #124a6b;
+        font-size: 15pt;
+        margin-top: 26px;
+        padding-bottom: 4px;
+        border-bottom: 2px solid #d5dee8;
+    }
+    h3 { color: #1e6f9f; font-size: 12.5pt; margin-bottom: 6px; }
+
+    p { margin: 6px 0; }
+    ul, ol { margin: 6px 0 10px 20px; }
+    li { margin: 3px 0; }
+
+    code, .mono {
+        font-family: Consolas, "Courier New", monospace;
+        background: #f1f5f9;
+        padding: 1px 4px;
+        border-radius: 3px;
+        font-size: 9.5pt;
+    }
+
+    pre {
+        background: #0f2740;
+        color: #e6edf5;
+        padding: 12px 14px;
+        border-radius: 6px;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 8.8pt;
+        line-height: 1.45;
+        overflow-x: auto;
+        white-space: pre-wrap;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0 16px;
+        font-size: 9.8pt;
+    }
+    th, td {
+        border: 1px solid #c9d5e1;
+        padding: 6px 8px;
+        text-align: left;
+        vertical-align: top;
+    }
+    th { background: #e7eef5; color: #124a6b; }
+
+    .portada {
+        height: 245mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        page-break-after: always;
+    }
+    .portada .modulo { color: #1e6f9f; font-weight: 700; letter-spacing: 1px; }
+    .portada .subtitulo { font-size: 15pt; color: #3b4b5c; margin-top: 6px; }
+    .portada .linea { width: 120px; height: 4px; background: #1e6f9f; margin: 20px auto; }
+    .portada .datos {
+        margin: 30px auto 0;
+        text-align: left;
+        border: 1px solid #d5dee8;
+        border-radius: 8px;
+        padding: 18px 24px;
+        width: 75%;
+        font-size: 11pt;
+    }
+    .portada .datos p { margin: 5px 0; }
+
+    .indice { page-break-after: always; }
+    .indice ol { font-size: 11pt; }
+    .indice li { margin: 4px 0; }
+
+    .captura {
+        page-break-inside: avoid;
+        margin: 14px 0 22px;
+    }
+    .captura img {
+        width: 100%;
+        border: 1px solid #c9d5e1;
+        border-radius: 6px;
+    }
+    .captura .pie {
+        font-size: 9pt;
+        color: #5b6b7b;
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    .nota {
+        background: #eef5fb;
+        border-left: 4px solid #1e6f9f;
+        padding: 10px 14px;
+        border-radius: 0 6px 6px 0;
+        margin: 12px 0;
+    }
+
+    .firma { margin-top: 40px; }
+    .firma .linea-firma {
+        border-top: 1px solid #1f2933;
+        width: 260px;
+        margin-top: 50px;
+        padding-top: 5px;
+        font-size: 10pt;
+    }
+
+    .saltopagina { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<!-- ================= PORTADA ================= -->
+<div class="portada">
+    <div class="modulo">MF0493_3 · IMPLANTACIÓN DE APLICACIONES WEB</div>
+    <h1>Clínica Salud</h1>
+    <div class="subtitulo">Aplicación web de gestión de pacientes y citas<br>Spring MVC · Hibernate · Thymeleaf · Maven</div>
+    <div class="linea"></div>
+
+    <div class="datos">
+        <p><strong>Alumno/a:</strong> [ESCRIBE AQUÍ TU NOMBRE Y APELLIDOS]</p>
+        <p><strong>Módulo:</strong> MF0493_3 · Implantación de aplicaciones web</p>
+        <p><strong>Curso:</strong> [ESCRIBE AQUÍ TU CURSO]</p>
+        <p><strong>Fecha de entrega:</strong> [ESCRIBE AQUÍ LA FECHA]</p>
+        <p><strong>Repositorio Git:</strong> [PEGA AQUÍ LA URL DEL REPOSITORIO]</p>
+    </div>
+</div>
+
+<!-- ================= ÍNDICE ================= -->
+<div class="indice">
+    <h1>Índice</h1>
+    <ol>
+        <li>Datos personales</li>
+        <li>Descripción de la aplicación</li>
+        <li>Tecnologías utilizadas</li>
+        <li>Diagrama entidad-relación</li>
+        <li>Estructura del proyecto</li>
+        <li>Base de datos</li>
+        <li>Arquitectura Controller · Service · Repository</li>
+        <li>Validación de formularios y gestión de errores</li>
+        <li>Pruebas automáticas</li>
+        <li>Pasos de despliegue en otro entorno</li>
+        <li>Capturas de la aplicación funcionando</li>
+        <li>Repositorio Git y entrega</li>
+        <li>Conclusión</li>
+    </ol>
+</div>
+
+<!-- ================= 1 ================= -->
+<h2>1. Datos personales</h2>
+<table>
+    <tr><th style="width:32%">Nombre y apellidos</th><td>[ESCRIBE AQUÍ TU NOMBRE Y APELLIDOS]</td></tr>
+    <tr><th>Módulo</th><td>MF0493_3 · Implantación de aplicaciones web</td></tr>
+    <tr><th>Curso</th><td>[ESCRIBE AQUÍ TU CURSO]</td></tr>
+    <tr><th>Fecha de entrega</th><td>[ESCRIBE AQUÍ LA FECHA]</td></tr>
+    <tr><th>Repositorio Git</th><td>[PEGA AQUÍ LA URL DEL REPOSITORIO]</td></tr>
+</table>
+
+<!-- ================= 2 ================= -->
+<h2>2. Descripción de la aplicación</h2>
+<p>
+    <strong>Clínica Salud</strong> es una aplicación web para gestionar los pacientes de una clínica
+    y las citas asociadas a cada uno. La aplicación permite realizar las operaciones básicas de
+    mantenimiento (CRUD) sobre dos entidades relacionadas:
+</p>
+<ul>
+    <li><strong>Pacientes:</strong> listado, alta, edición y borrado.</li>
+    <li><strong>Citas:</strong> listado, alta, edición y borrado.</li>
+</ul>
+<p>
+    La relación entre ambas entidades es <strong>1:N</strong>: un paciente puede tener muchas citas y
+    cada cita pertenece a un único paciente. Al borrar un paciente se eliminan también sus citas
+    gracias a la configuración en cascada de Hibernate.
+</p>
+<p>
+    La interfaz está formada por una página de inicio con accesos directos, un listado de pacientes,
+    un listado de citas y un formulario para cada entidad. Todos los formularios validan los datos
+    antes de guardarlos y muestran mensajes de error junto a los campos incorrectos.
+</p>
+
+<!-- ================= 3 ================= -->
+<h2>3. Tecnologías utilizadas</h2>
+<table>
+    <tr><th style="width:28%">Tecnología</th><th>Uso en el proyecto</th></tr>
+    <tr><td>Java 17</td><td>Lenguaje de programación de la aplicación.</td></tr>
+    <tr><td>Spring Boot 3.3.5</td><td>Arranque automático, servidor embebido y configuración.</td></tr>
+    <tr><td>Spring MVC</td><td>Capa web: controladores, rutas y vistas.</td></tr>
+    <tr><td>Hibernate / JPA</td><td>Mapeo objeto-relacional de las entidades.</td></tr>
+    <tr><td>Spring Data JPA</td><td>Repositorios con CRUD completo.</td></tr>
+    <tr><td>Thymeleaf</td><td>Plantillas HTML con datos dinámicos.</td></tr>
+    <tr><td>H2</td><td>Base de datos en memoria para el entorno de prácticas.</td></tr>
+    <tr><td>Maven</td><td>Gestión de dependencias, compilación, pruebas y empaquetado.</td></tr>
+    <tr><td>JUnit 5 / Mockito / MockMvc</td><td>Pruebas unitarias y de integración.</td></tr>
+    <tr><td>Git</td><td>Control de versiones con commits descriptivos.</td></tr>
+</table>
+
+<!-- ================= 4 ================= -->
+<h2>4. Diagrama entidad-relación</h2>
+<p>
+    La base de datos tiene dos tablas relacionadas mediante la clave foránea
+    <code>cita.paciente_id</code>.
+</p>
+
+<svg width="100%" viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg" role="img"
+     aria-label="Diagrama entidad-relación Paciente 1 a N Cita">
+    <defs>
+        <marker id="flecha" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L9,3 z" fill="#1e6f9f"/>
+        </marker>
+    </defs>
+
+    <!-- PACIENTE -->
+    <rect x="30" y="70" width="300" height="190" rx="8" fill="#ffffff" stroke="#1e6f9f" stroke-width="2"/>
+    <rect x="30" y="70" width="300" height="36" rx="8" fill="#1e6f9f"/>
+    <text x="180" y="94" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" fill="#ffffff" font-weight="bold">PACIENTE</text>
+    <text x="48" y="132" font-family="Consolas, monospace" font-size="13" fill="#1f2933">PK  id            BIGINT</text>
+    <text x="48" y="157" font-family="Consolas, monospace" font-size="13" fill="#1f2933">    nombre        VARCHAR(100)</text>
+    <text x="48" y="182" font-family="Consolas, monospace" font-size="13" fill="#1f2933">    email         VARCHAR(120)</text>
+    <text x="48" y="207" font-family="Consolas, monospace" font-size="13" fill="#1f2933">    telefono      VARCHAR(30)</text>
+
+    <!-- CITA -->
+    <rect x="490" y="55" width="300" height="220" rx="8" fill="#ffffff" stroke="#1e6f9f" stroke-width="2"/>
+    <rect x="490" y="55" width="300" height="36" rx="8" fill="#1e6f9f"/>
+    <text x="640" y="79" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" fill="#ffffff" font-weight="bold">CITA</text>
+    <text x="508" y="117" font-family="Consolas, monospace" font-size="13" fill="#1f2933">PK  id            BIGINT</text>
+    <text x="508" y="142" font-family="Consolas, monospace" font-size="13" fill="#1f2933">    fecha         DATE</text>
+    <text x="508" y="167" font-family="Consolas, monospace" font-size="13" fill="#1f2933">    motivo        VARCHAR(200)</text>
+    <text x="508" y="192" font-family="Consolas, monospace" font-size="13" fill="#1f2933">FK  paciente_id   BIGINT</text>
+
+    <!-- RELACION -->
+    <line x1="330" y1="165" x2="490" y2="165" stroke="#1e6f9f" stroke-width="2" marker-end="url(#flecha)"/>
+    <text x="380" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" fill="#124a6b" font-weight="bold">1</text>
+    <text x="445" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" fill="#124a6b" font-weight="bold">N</text>
+    <text x="410" y="195" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#5b6b7b">tiene</text>
+
+    <text x="410" y="315" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#5b6b7b">
+        Un paciente puede tener muchas citas; cada cita pertenece a un solo paciente.
+    </text>
+</svg>
+
+<h3>Equivalencia con las entidades Java</h3>
+<table>
+    <tr><th>Tabla</th><th>Entidad</th><th>Relación</th></tr>
+    <tr><td><code>paciente</code></td><td><code>Paciente</code></td><td><code>@OneToMany(mappedBy = "paciente")</code></td></tr>
+    <tr><td><code>cita</code></td><td><code>Cita</code></td><td><code>@ManyToOne</code> + <code>@JoinColumn(name = "paciente_id")</code></td></tr>
+</table>
+
+<!-- ================= 5 ================= -->
+<div class="saltopagina"></div>
+<h2>5. Estructura del proyecto</h2>
+<pre>
+clinica/
+├── pom.xml
+├── arrancar.bat
+├── probar.bat
+├── empaquetar.bat
+├── ejecutar_jar.bat
+├── LEEME_ALUMNO.txt
+├── src/
+│   ├── main/
+│   │   ├── java/es/hazerta/clinica/
+│   │   │   ├── ClinicaApplication.java
+│   │   │   ├── model/
+│   │   │   │   ├── Paciente.java
+│   │   │   │   └── Cita.java
+│   │   │   ├── repository/
+│   │   │   │   ├── PacienteRepository.java
+│   │   │   │   └── CitaRepository.java
+│   │   │   ├── service/
+│   │   │   │   ├── PacienteService.java
+│   │   │   │   └── CitaService.java
+│   │   │   ├── controller/
+│   │   │   │   ├── HomeController.java
+│   │   │   │   ├── PacienteController.java
+│   │   │   │   └── CitaController.java
+│   │   │   └── exception/
+│   │   │       ├── RecursoNoEncontradoException.java
+│   │   │       └── GlobalExceptionHandler.java
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       ├── schema.sql
+│   │       ├── data.sql
+│   │       ├── static/css/estilos.css
+│   │       └── templates/
+│   │           ├── index.html
+│   │           ├── error.html
+│   │           ├── error/404.html
+│   │           ├── error/500.html
+│   │           ├── pacientes/lista.html
+│   │           ├── pacientes/formulario.html
+│   │           ├── citas/lista.html
+│   │           └── citas/formulario.html
+│   └── test/java/es/hazerta/clinica/
+│       ├── ClinicaApplicationTests.java
+│       ├── PacienteControllerTest.java
+│       ├── CitaControllerTest.java
+│       ├── PacienteServiceTest.java
+│       └── CitaServiceTest.java
+└── documentacion/
+    ├── DOCUMENTACION.html
+    ├── Apellidos_Nombre_Documentacion.pdf
+    └── capturas/*.png
+</pre>
+
+<!-- ================= 6 ================= -->
+<h2>6. Base de datos</h2>
+<p>
+    El esquema se crea con <code>schema.sql</code> y los datos de prueba se cargan con
+    <code>data.sql</code>. La configuración está en <code>application.properties</code>:
+</p>
+<pre>
+spring.datasource.url=jdbc:h2:mem:clinica;DB_CLOSE_DELAY=-1
+spring.jpa.hibernate.ddl-auto=none
+spring.sql.init.mode=always
+spring.sql.init.encoding=UTF-8
+spring.h2.console.enabled=true
+server.port=8080
+</pre>
+
+<h3>schema.sql</h3>
+<pre>
+DROP TABLE IF EXISTS cita;
+DROP TABLE IF EXISTS paciente;
+
+CREATE TABLE paciente (
+    id       BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre   VARCHAR(100) NOT NULL,
+    email    VARCHAR(120) NOT NULL,
+    telefono VARCHAR(30)
+);
+
+CREATE TABLE cita (
+    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    fecha       DATE         NOT NULL,
+    motivo      VARCHAR(200) NOT NULL,
+    paciente_id BIGINT       NOT NULL,
+    CONSTRAINT fk_cita_paciente
+        FOREIGN KEY (paciente_id) REFERENCES paciente (id)
+);
+</pre>
+
+<h3>data.sql (datos de prueba)</h3>
+<pre>
+INSERT INTO paciente (nombre, email, telefono) VALUES
+    ('Ana García', 'ana.garcia@example.com', '600111222'),
+    ('Luis Martínez', 'luis.martinez@example.com', '600333444'),
+    ('Marta López', 'marta.lopez@example.com', '600555666');
+
+INSERT INTO cita (fecha, motivo, paciente_id) VALUES
+    ('2026-11-02', 'Revisión anual', 1),
+    ('2026-11-05', 'Vacunación de la gripe', 1),
+    ('2026-11-10', 'Consulta de fisioterapia', 2),
+    ('2026-11-12', 'Control de tensión', 3),
+    ('2026-11-18', 'Revisión de analítica', 2);
+</pre>
+
+<div class="nota">
+    <strong>Nota:</strong> H2 funciona en memoria, por lo que los datos se reinician en cada arranque.
+    Para un entorno real se puede cambiar la URL de conexión a una base de datos persistente
+    (por ejemplo, H2 en fichero o MySQL) sin modificar el código Java.
+</div>
+
+<!-- ================= 7 ================= -->
+<h2>7. Arquitectura Controller · Service · Repository</h2>
+<p>La aplicación sigue una arquitectura por capas:</p>
+<ul>
+    <li><strong>Controller:</strong> recibe las peticiones HTTP, valida a través del servicio y elige la vista.</li>
+    <li><strong>Service:</strong> contiene la lógica de negocio y las reglas de validación.</li>
+    <li><strong>Repository:</strong> acceso a datos mediante Spring Data JPA e Hibernate.</li>
+    <li><strong>Model:</strong> entidades JPA que representan las tablas.</li>
+    <li><strong>View:</strong> plantillas Thymeleaf que muestran los datos y formularios.</li>
+</ul>
+
+<h3>Rutas principales</h3>
+<table>
+    <tr><th>Método</th><th>Ruta</th><th>Acción</th></tr>
+    <tr><td>GET</td><td><code>/</code></td><td>Página de inicio con contadores.</td></tr>
+    <tr><td>GET</td><td><code>/pacientes</code></td><td>Listado de pacientes.</td></tr>
+    <tr><td>GET</td><td><code>/pacientes/nuevo</code></td><td>Formulario de alta de paciente.</td></tr>
+    <tr><td>GET</td><td><code>/pacientes/editar/{id}</code></td><td>Formulario de edición de paciente.</td></tr>
+    <tr><td>POST</td><td><code>/pacientes/guardar</code></td><td>Guarda o actualiza un paciente.</td></tr>
+    <tr><td>POST</td><td><code>/pacientes/borrar/{id}</code></td><td>Borra un paciente y sus citas.</td></tr>
+    <tr><td>GET</td><td><code>/citas</code></td><td>Listado de citas.</td></tr>
+    <tr><td>GET</td><td><code>/citas/nuevo</code></td><td>Formulario de alta de cita.</td></tr>
+    <tr><td>GET</td><td><code>/citas/editar/{id}</code></td><td>Formulario de edición de cita.</td></tr>
+    <tr><td>POST</td><td><code>/citas/guardar</code></td><td>Guarda o actualiza una cita.</td></tr>
+    <tr><td>POST</td><td><code>/citas/borrar/{id}</code></td><td>Borra una cita.</td></tr>
+</table>
+
+<h3>Ejemplo de entidad: relación 1:N</h3>
+<pre>
+@Entity
+@Table(name = "paciente")
+public class Paciente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nombre;
+    private String email;
+    private String telefono;
+
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List&lt;Cita&gt; citas = new ArrayList&lt;&gt;();
+}
+
+@Entity
+@Table(name = "cita")
+public class Cita {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private LocalDate fecha;
+    private String motivo;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "paciente_id", nullable = false)
+    private Paciente paciente;
+}
+</pre>
+
+<!-- ================= 8 ================= -->
+<h2>8. Validación de formularios y gestión de errores</h2>
+<p>La validación se realiza en la capa de servicio y devuelve un mapa de errores por campo:</p>
+<table>
+    <tr><th>Campo</th><th>Regla de validación</th></tr>
+    <tr><td>Paciente · nombre</td><td>Obligatorio, entre 2 y 100 caracteres.</td></tr>
+    <tr><td>Paciente · email</td><td>Obligatorio, formato válido y no repetido.</td></tr>
+    <tr><td>Paciente · teléfono</td><td>Opcional; solo números, espacios, <code>+</code> y <code>-</code>.</td></tr>
+    <tr><td>Cita · fecha</td><td>Obligatoria y con formato de fecha válido.</td></tr>
+    <tr><td>Cita · motivo</td><td>Obligatorio, entre 3 y 200 caracteres.</td></tr>
+    <tr><td>Cita · paciente</td><td>Debe seleccionarse un paciente existente.</td></tr>
+</table>
+<p>
+    Cuando hay errores, el formulario se vuelve a mostrar con los datos introducidos y un mensaje
+    junto a cada campo incorrecto. Para los errores de recurso no encontrado (por ejemplo, editar
+    una cita que ya no existe) se muestra una página <strong>404</strong> controlada, y para
+    cualquier fallo inesperado una página <strong>500</strong>. La gestión centralizada se realiza
+    con <code>@ControllerAdvice</code> y <code>@ExceptionHandler</code>.
+</p>
+
+<!-- ================= 9 ================= -->
+<h2>9. Pruebas automáticas</h2>
+<p>
+    El proyecto incluye <strong>22 pruebas</strong> que se ejecutan con <code>probar.bat</code>
+    (Maven + JUnit 5). Todas pasan correctamente:
+</p>
+<pre>
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0 -- CitaControllerTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0 -- CitaServiceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0 -- ClinicaApplicationTests
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0 -- PacienteControllerTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0 -- PacienteServiceTest
+[INFO] Tests run: 22, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+</pre>
+
+<table>
+    <tr><th>Clase de prueba</th><th>Tipo</th><th>Qué comprueba</th></tr>
+    <tr><td><code>ClinicaApplicationTests</code></td><td>Integración</td><td>Arranque, carga de datos y relación cita-paciente.</td></tr>
+    <tr><td><code>PacienteControllerTest</code></td><td>Integración (MockMvc)</td><td>Listado, alta, validación, edición y borrado de pacientes.</td></tr>
+    <tr><td><code>CitaControllerTest</code></td><td>Integración (MockMvc)</td><td>Listado, alta, validación y borrado de citas.</td></tr>
+    <tr><td><code>PacienteServiceTest</code></td><td>Unidad (Mockito)</td><td>Validaciones y lógica de negocio de pacientes.</td></tr>
+    <tr><td><code>CitaServiceTest</code></td><td>Unidad (Mockito)</td><td>Validaciones y asociación de citas con pacientes.</td></tr>
+</table>
+
+<!-- ================= 10 ================= -->
+<div class="saltopagina"></div>
+<h2>10. Pasos de despliegue en otro entorno</h2>
+<ol>
+    <li>Instalar <strong>Java 17</strong> (JRE o JDK) en el equipo de destino.</li>
+    <li>Copiar el fichero <code>app.jar</code> generado en <code>target/</code>.</li>
+    <li>Abrir una terminal en la carpeta donde esté el JAR.</li>
+    <li>Ejecutar:
+        <pre>java -jar app.jar</pre>
+    </li>
+    <li>Abrir el navegador en <code>http://localhost:8080</code>.</li>
+    <li>Para detener la aplicación, pulsar <code>Ctrl + C</code> en la terminal.</li>
+</ol>
+<p>
+    No es necesario instalar Maven ni copiar el código fuente: el JAR contiene la aplicación y todas
+    sus dependencias. La base de datos H2 se crea en memoria al arrancar y se carga con los datos de
+    <code>data.sql</code>.
+</p>
+
+<h3>Empaquetado desde el código fuente</h3>
+<pre>
+empaquetar.bat        (equivale a: mvn package -DskipTests)
+</pre>
+<p>El resultado es <code>target/app.jar</code>, listo para ejecutar en cualquier equipo con Java 17.</p>
+
+<!-- ================= 11 ================= -->
+<h2>11. Capturas de la aplicación funcionando</h2>
+
+<div class="captura">
+    <img src="capturas/01-inicio.png" alt="Página de inicio de la aplicación">
+    <div class="pie">Figura 1. Página de inicio con los contadores de pacientes y citas.</div>
+</div>
+
+<div class="captura">
+    <img src="capturas/02-pacientes.png" alt="Listado de pacientes">
+    <div class="pie">Figura 2. Listado de pacientes con acciones de editar y borrar.</div>
+</div>
+
+<div class="captura">
+    <img src="capturas/03-formulario-paciente.png" alt="Formulario de alta de paciente">
+    <div class="pie">Figura 3. Formulario de alta de un nuevo paciente.</div>
+</div>
+
+<div class="captura">
+    <img src="capturas/04-citas.png" alt="Listado de citas">
+    <div class="pie">Figura 4. Listado de citas mostrando la fecha, el motivo y el paciente asociado.</div>
+</div>
+
+<div class="captura">
+    <img src="capturas/05-formulario-cita.png" alt="Formulario de alta de cita">
+    <div class="pie">Figura 5. Formulario de alta de una cita con selección de paciente.</div>
+</div>
+
+<!-- ================= 12 ================= -->
+<h2>12. Repositorio Git y entrega</h2>
+<p>
+    El proyecto está versionado con Git. El repositorio incluye commits descriptivos que reflejan
+    la evolución del trabajo:
+</p>
+<ol>
+    <li>Estructura inicial del proyecto Maven y configuración.</li>
+    <li>Entidades <code>Paciente</code> y <code>Cita</code> con relación 1:N.</li>
+    <li>Esquema SQL y datos de prueba.</li>
+    <li>Repositorios y capa de servicio con validación.</li>
+    <li>Controladores y vistas Thymeleaf con CRUD completo.</li>
+    <li>Pruebas unitarias y de integración.</li>
+    <li>Documentación, scripts y capturas.</li>
+</ol>
+<p><strong>URL del repositorio:</strong> [PEGA AQUÍ LA URL DEL REPOSITORIO]</p>
+
+<h3>Contenido de la entrega</h3>
+<ul>
+    <li><code>Apellidos_Nombre_MF0493_3.zip</code> (proyecto completo sin la carpeta <code>target/</code>).</li>
+    <li><code>Apellidos_Nombre_Documentacion.pdf</code> (este documento).</li>
+    <li>Enlace al repositorio Git en el comentario privado de la tarea.</li>
+</ul>
+
+<!-- ================= 13 ================= -->
+<h2>13. Conclusión</h2>
+<p>
+    El proyecto implementa una aplicación web completa con Spring MVC e Hibernate, siguiendo una
+    arquitectura por capas y aplicando validación de formularios, gestión centralizada de errores y
+    pruebas automáticas. La relación 1:N entre pacientes y citas permite comprobar el funcionamiento
+    del mapeo objeto-relacional y de las operaciones CRUD sobre ambas entidades.
+</p>
+<p>
+    El uso de Maven y Git facilita la construcción reproducible del proyecto y el seguimiento de los
+    cambios. El empaquetado en un único <code>app.jar</code> permite desplegar la aplicación en
+    cualquier equipo con Java 17 de forma sencilla.
+</p>
+
+<div class="firma">
+    <div class="linea-firma">Firma del alumno/a</div>
+</div>
+
+</body>
+</html>
