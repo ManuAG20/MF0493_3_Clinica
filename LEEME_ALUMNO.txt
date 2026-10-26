@@ -2,9 +2,10 @@ PROYECTO FINAL - MF0493_3 - IMPLANTACIÓN DE APLICACIONES WEB
 ============================================================
 
 DATOS PERSONALES
-Nombre y apellidos: [ESCRIBE AQUÍ TU NOMBRE]
-Curso: [ESCRIBE AQUÍ TU CURSO]
-Fecha de entrega: [ESCRIBE AQUÍ LA FECHA]
+Nombre y apellidos: Manuel Arce Garcia
+Curso: Implantación de aplicaciones web en entornos de internet, intranet y extranet
+Fecha de entrega: 27/10/2026
+Repositorio Git: https://github.com/ManuAG20/MF0493_3_Clinica
 
 DESCRIPCIÓN DE LA APLICACIÓN
 Aplicación web de gestión de una clínica. Permite:
